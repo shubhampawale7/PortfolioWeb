@@ -78,7 +78,7 @@ const SkillGauge = ({ level, size = 80, strokeWidth = 8 }) => {
         cx={size / 2}
         cy={size / 2}
         r={radius}
-        stroke="rgba(167, 139, 250, 01)"
+        stroke="rgba(167, 139, 250, 1)" // Tailwind purple-400
         strokeWidth={strokeWidth}
         fill="transparent"
         strokeDasharray={circumference}
@@ -107,27 +107,6 @@ export const SkillsSection = () => {
   const filteredSkills = skills.filter(
     (skill) => activeCategory === "all" || skill.category === activeCategory
   );
-
-  useEffect(() => {
-    gsap.from("#skills h2", {
-      opacity: 1,
-      y: 50,
-      duration: 1,
-      ease: "power3.out",
-    });
-
-    gsap.from(".skill-card", {
-      scrollTrigger: {
-        trigger: ".skill-card",
-        start: "top 80%",
-      },
-      opacity: 1,
-      y: 30,
-      stagger: 0.1,
-      duration: 1,
-      ease: "power2.out",
-    });
-  }, [activeCategory]);
 
   return (
     <section
