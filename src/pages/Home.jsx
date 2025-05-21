@@ -21,7 +21,7 @@ import { ScheduleCall } from "../components/ScheduleCall";
 
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Theme Toggle */}
       <ThemeToggle />
 
