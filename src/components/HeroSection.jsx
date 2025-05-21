@@ -20,10 +20,25 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I create innovative web experiences with modern technologies.
-            Specializing in Full-stack web development, I build interfaces that
-            are both beautiful and functional.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-loose font-normal opacity-0 animate-fade-in-delay-3 [text-wrap:balance]">
+            I create{" "}
+            <span className="text-primary font-semibold">innovative</span> web
+            experiences using modern technologies that blend design and
+            functionality seamlessly. As a{" "}
+            <span className="text-primary font-semibold">Full-stack</span>{" "}
+            developer, I specialize in building
+            <span className="text-primary font-semibold"> responsive</span>,
+            user-friendly interfaces backed by powerful and efficient
+            server-side logic. My work spans everything from interactive
+            websites to dynamic dashboards, using tools like React, Node.js, and
+            Tailwind CSS. I’m passionate about crafting clean,{" "}
+            <span className="text-primary font-semibold">scalable</span> code
+            that brings ideas to life and solves{" "}
+            <span className="text-primary font-semibold">
+              real-world problems
+            </span>
+            . Every project I build is designed to be fast, accessible, and
+            visually compelling.
           </p>
 
           <div className="pt-4 opacity-0 animate-fade-in-delay-4">
