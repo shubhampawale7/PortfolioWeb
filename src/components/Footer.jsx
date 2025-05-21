@@ -4,7 +4,16 @@ export const Footer = () => {
   return (
     <footer className="py-8 px-4 bg-card border-t border-border mt-12 flex flex-col md:flex-row items-center justify-center gap-4">
       <p className="text-sm text-muted-foreground text-center">
-        &copy; {new Date().getFullYear()} Shubham Pawale | All rights reserved.
+        &copy; {new Date().getFullYear()}{" "}
+        <a
+          href="https://shubhampawale.info"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-primary hover:underline"
+        >
+          shubhampawale.info
+        </a>{" "}
+        | All rights reserved.
       </p>
       <a
         href="#hero"

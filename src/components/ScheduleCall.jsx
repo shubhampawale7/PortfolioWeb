@@ -39,7 +39,7 @@ export const ScheduleCall = () => {
       {/* Floating Button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-8 right-25 z-50 bg-primary text-white px-5 py-3 rounded-full shadow-lg hover:scale-105 transform transition-transform flex items-center gap-2 "
+        className=" fixed bottom-8 right-25 z-50 bg-primary text-white px-5 py-3 rounded-full shadow-lg hover:scale-105 transform transition-transform flex items-center gap-2 "
         aria-label="Schedule a call"
       >
         <svg
