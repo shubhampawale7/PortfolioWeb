@@ -34,7 +34,7 @@ export const HeroSection = () => {
               glareEnable={true}
               glareMaxOpacity={0.2}
               perspective={1000}
-              scale={1}
+              scale={1.05}
               className="inline-block"
               transitionSpeed={1500}
             >
