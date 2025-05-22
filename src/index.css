@@ -164,5 +164,15 @@
 .text-gradient {
   @apply bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent;
 }
+.swiper-pagination-bullet {
+  background: #ccc;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: #6366f1; /* Tailwind indigo-500 */
+  opacity: 1;
+}
 
 
