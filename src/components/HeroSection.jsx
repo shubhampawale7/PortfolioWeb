@@ -26,6 +26,9 @@ export const HeroSection = () => {
 
             {/* Enhanced 3D Tilt Name with Framer Motion & Glow */}
             <Tilt
+              tiltEnable={true}
+              trackOnWindow={true}
+              gyroscope={true}
               tiltMaxAngleX={15}
               tiltMaxAngleY={15}
               glareEnable={true}
