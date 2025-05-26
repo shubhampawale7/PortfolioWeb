@@ -65,7 +65,7 @@ const projects = [
     demoUrl: "https://walnut-hotel.vercel.app/",
     githubUrl: "https://github.com/shubhampawale7",
   },
-];  
+];
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
