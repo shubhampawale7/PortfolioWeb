@@ -10,8 +10,8 @@ import {
   ExternalLink,
   Github,
   X,
-  ChevronLeft,
-  ChevronRight,
+  ArrowLeftCircle,
+  ArrowRightCircle,
 } from "lucide-react";
 
 export const ProjectModal = ({ isOpen, onClose, project }) => {
@@ -68,11 +68,19 @@ export const ProjectModal = ({ isOpen, onClose, project }) => {
               </Swiper>
 
               {/* Custom Navigation Arrows */}
-              <button className="swiper-button-prev absolute top-1/2 left-4 z-10 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow transition">
-                <ChevronLeft className="w-5 h-5 text-muted-foreground" />
+              {/* Custom Navigation Arrows */}
+              <button
+                className="swiper-button-prev absolute top-1/2 left-4 z-10 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/40 hover:scale-105 transition-all shadow-md"
+                aria-label="Previous Slide"
+              >
+                <ArrowLeftCircle className="w-5 h-5" />
               </button>
-              <button className="swiper-button-next absolute top-1/2 right-4 z-10 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white shadow transition">
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+
+              <button
+                className="swiper-button-next absolute top-1/2 right-4 z-10 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/40 hover:scale-105 transition-all shadow-md"
+                aria-label="Next Slide"
+              >
+                <ArrowRightCircle className="w-5 h-5" />
               </button>
             </div>
           )}

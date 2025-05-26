@@ -50,7 +50,22 @@ const projects = [
     demoUrl: "https://www.trishhaminesandminerals.com/",
     githubUrl: "https://github.com/shubhampawale7",
   },
-];
+  {
+    id: 4,
+    title: "Walnut Hotel - Landing Page",
+    description:
+      "A sleek and responsive landing page for the Walnut Hotel, built using pure HTML, CSS, and JavaScript.",
+    image: "/projects/project4.png",
+    extraImages: [
+      "/projects/project4.png",
+      "/projects/project4b.png",
+      "/projects/project4c.png",
+    ],
+    tags: ["HTML", "CSS", "JavaScript"],
+    demoUrl: "https://walnut-hotel.vercel.app/",
+    githubUrl: "https://github.com/shubhampawale7",
+  },
+];  
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
