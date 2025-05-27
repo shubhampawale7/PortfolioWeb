@@ -19,6 +19,9 @@ import { FAQAccordion } from "../components/FAQAccordion";
 import { FloatingWhatsappChat } from "../components/FloatingWhatsappChat";
 import { ScheduleCall } from "../components/ScheduleCall";
 import { ServiceSection } from "../components/ServiceSection";
+import { HowIWork } from "../components/HowIWork";
+import { UIUXShowcase } from "../components/UIUXShowcase";
+//import { DigitalGardenSection } from "../components/DigitalGardenSection.jsx";
 
 export const Home = () => {
   return (
@@ -37,13 +40,15 @@ export const Home = () => {
         <HeroSection />
         <AboutSection />
         <ServiceSection />
+        <UIUXShowcase />
         <SkillsSection />
         <ExperienceSection />
         <ProjectsSection />
+        <HowIWork />
+        {/* <DigitalGardenSection /> */}
         <TestimonialCarousel />
         <FAQAccordion />
         <ContactSection />
-
         <ScheduleCall />
       </main>
 

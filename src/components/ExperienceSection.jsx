@@ -7,7 +7,7 @@ const experiences = [
   {
     job: "Graduate Engineer Trainee",
     company: "Newgen Technomate LLP",
-    date: "Jul 2023 - Aug 2024",
+    //  date: "Jul 2023 - Aug 2024",
     badge: "2023–24",
     responsibilities: [
       "Improved system reliability.",
@@ -18,7 +18,7 @@ const experiences = [
   {
     job: "Backend Web Developer",
     company: "Newgen Technomate LLP",
-    date: "Sept 2024 - Mar 2025",
+    // date: "Sept 2024 - Mar 2025",
     badge: "2024–25",
     responsibilities: [
       "Refactored legacy codebases for improved maintainability.",
@@ -29,7 +29,7 @@ const experiences = [
   {
     job: "Freelancing",
     company: "",
-    date: "Apr 2025 - Present",
+    // date: "Apr 2025 - Present",
     badge: "2025–Now",
     responsibilities: [
       "Developed and deployed full-stack production websites.",
