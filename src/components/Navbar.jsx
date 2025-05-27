@@ -8,6 +8,7 @@ import {
   FolderOpen,
   Mail,
   Briefcase,
+  Layers, // New icon for Services
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -15,10 +16,16 @@ const navItems = [
   { name: "Home", href: "#hero", icon: <Home size={18} className="mr-2" /> },
   { name: "About", href: "#about", icon: <User size={18} className="mr-2" /> },
   {
+    name: "Services", // Added Services
+    href: "#services", // Link to your new services section ID
+    icon: <Layers size={18} className="mr-2" />, // Icon for Services
+  },
+  {
     name: "Skills",
     href: "#skills",
     icon: <Code size={18} className="mr-2" />,
   },
+
   {
     name: "Experience",
     href: "#experience",

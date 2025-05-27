@@ -18,6 +18,7 @@ import { FAQAccordion } from "../components/FAQAccordion";
 
 import { FloatingWhatsappChat } from "../components/FloatingWhatsappChat";
 import { ScheduleCall } from "../components/ScheduleCall";
+import { ServiceSection } from "../components/ServiceSection";
 
 export const Home = () => {
   return (
@@ -35,10 +36,10 @@ export const Home = () => {
       <main>
         <HeroSection />
         <AboutSection />
+        <ServiceSection />
         <SkillsSection />
         <ExperienceSection />
         <ProjectsSection />
-
         <TestimonialCarousel />
         <FAQAccordion />
         <ContactSection />

@@ -18,7 +18,7 @@ export const HeroSection = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="container max-w-4xl mx-auto text-center z-10"
+        className="container max-w-4xl mx-auto text-start z-10"
       >
         <div className="space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight flex flex-wrap justify-center gap-2">
@@ -77,18 +77,13 @@ export const HeroSection = () => {
             visually compelling.
           </p>
 
-          <div className="mt-8 opacity-0 animate-fade-in-delay-4">
+          <div className="mt-8 opacity-0 animate-fade-in-delay-4 flex justify-center ">
             <a href="#projects" className="cosmic-button">
               View My Work
             </a>
           </div>
         </div>
       </motion.div>
-
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce ">
-        <span className="text-sm text-muted-foreground "> Scroll </span>
-        <ArrowDown className="h-5 w-5 text-primary" />
-      </div> */}
     </section>
   );
 };
