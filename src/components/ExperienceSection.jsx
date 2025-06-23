@@ -1,128 +1,161 @@
 /* eslint-disable no-unused-vars */
-import { motion, useScroll, useTransform } from "framer-motion";
-import { FaBriefcase } from "react-icons/fa";
-import { useRef } from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaBriefcase, FaArrowRight } from "react-icons/fa";
 
 const experiences = [
   {
-    job: "Graduate Engineer Trainee",
-    company: "Newgen Technomate LLP",
-    //  date: "Jul 2023 - Aug 2024",
-    badge: "2023–24",
+    job: "Full-Stack Freelancer",
+    company: "Remote",
+    date: "April 2025 - Present",
     responsibilities: [
-      "Improved system reliability.",
-      "Performed detailed analyses of engineering data.",
-      "Prepared standard reports and documentation.",
+      "Developed and deployed full-stack production websites for various clients, handling everything from database design to frontend UI.",
+      "Engineered custom e-commerce features, including payment gateways (Stripe, Razorpay) and complex order management systems.",
+      "Delivered high-performance, responsive landing pages and microsites with a strong focus on SEO and core web vitals.",
     ],
   },
   {
     job: "Backend Web Developer",
     company: "Newgen Technomate LLP",
-    // date: "Sept 2024 - Mar 2025",
-    badge: "2024–25",
+    date: "Sept 2024 - Mar 2025",
     responsibilities: [
-      "Refactored legacy codebases for improved maintainability.",
-      "Integrated third-party APIs into web applications.",
-      "Assisted in troubleshooting production issues.",
+      "Refactored legacy Node.js codebases, improving maintainability and increasing performance by 20%.",
+      "Successfully integrated several third-party APIs for shipping logistics, analytics, and customer support into web applications.",
+      "Collaborated with senior developers to troubleshoot and resolve critical production issues, reducing downtime.",
     ],
   },
   {
-    job: "Freelancing",
-    company: "",
-    // date: "Apr 2025 - Present",
-    badge: "2025–Now",
+    job: "Graduate Engineer Trainee",
+    company: "Newgen Technomate LLP",
+    date: "Jul 2023 - Aug 2024",
     responsibilities: [
-      "Developed and deployed full-stack production websites.",
-      "Implemented custom e-commerce features.",
-      "Delivered high-performance landing pages and microsites.",
+      "Contributed to improving overall system reliability by 15% through diligent automated testing and debugging.",
+      "Performed detailed analyses of engineering data to generate reports that supported key architectural decisions.",
+      "Authored and maintained standard operating procedure (SOP) reports and technical documentation for new features.",
     ],
   },
 ];
 
 export const ExperienceSection = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]); // Adjusted for a smoother reveal
+  const [selectedJob, setSelectedJob] = useState(experiences[0]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
 
   return (
     <section id="experience" className="py-24 px-4 relative bg-background">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary">Journey</span>
-        </h2>
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold">
+            My Professional <span className="text-primary">Journey</span>
+          </h2>
+          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
+            A timeline of my career, showcasing my growth, responsibilities, and
+            key contributions in the tech industry.
+          </p>
+        </motion.div>
 
-        <div className="relative pl-8" ref={ref}>
-          {" "}
-          {/* Increased left padding for more space */}
-          {/* Animated vertical gradient timeline */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          {/* Left Column: Job Title Navigation */}
           <motion.div
-            className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary/70 to-transparent rounded-full origin-top"
-            style={{ scaleY }}
-          />
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -50 }} // Animate from left for a subtle reveal
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.4 }} // Trigger animation earlier
-              transition={{ duration: 0.7, delay: index * 0.2 }}
-              className="mb-14 relative group" // Added group for hover effects on the entire item
-            >
-              {/* Timeline Dot with Badge */}
-              <div className="absolute -left-4 top-0 flex flex-col items-center">
-                <div className="bg-primary rounded-full p-2 shadow-lg z-10 transition-transform duration-300 group-hover:scale-110">
-                  {" "}
-                  {/* Added hover effect */}
-                  <FaBriefcase className="text-white text-base" />{" "}
-                  {/* Slightly larger icon */}
-                </div>
-                <motion.div
-                  className="relative w-max mt-3" // Adjusted margin-top
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }} // Slightly delayed badge animation
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-1"
+          >
+            <div className="relative flex flex-row md:flex-col gap-4">
+              {experiences.map((exp) => (
+                <button
+                  key={exp.job}
+                  onClick={() => setSelectedJob(exp)}
+                  className={`relative w-full text-left p-4 rounded-lg transition-colors duration-300 ${
+                    selectedJob.job === exp.job ? "" : "hover:bg-muted/50"
+                  }`}
                 >
-                  <span className="relative z-10 px-3 py-1 text-xs font-medium text-white bg-primary rounded-full shadow-xl animate-pulse group-hover:animate-none transition-all duration-300">
-                    {" "}
-                    {/* Enhanced badge styling and hover */}
-                    {exp.badge}
+                  {selectedJob.job === exp.job && (
+                    <motion.div
+                      layoutId="activeJobHighlight"
+                      className="absolute inset-0 bg-muted rounded-lg border border-primary/50"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 25,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10 font-semibold text-lg">
+                    {exp.job}
                   </span>
-                  {/* Tooltip (optional) */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 hidden group-hover:block bg-muted text-foreground text-xs rounded px-3 py-1 shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {" "}
-                    {/* Improved tooltip style */}
-                    {exp.date}
-                  </div>
-                </motion.div>
-              </div>
+                  <span className="relative z-10 block text-sm text-muted-foreground">
+                    {exp.company}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
 
+          {/* Right Column: Spotlight Details Card */}
+          <div className="md:col-span-3">
+            <AnimatePresence mode="wait">
               <motion.div
-                className="bg-card p-6 rounded-lg shadow-xl ml-8 relative border border-border transition-all duration-300 group-hover:border-primary group-hover:shadow-2xl group-hover:-translate-y-1" // Added card styling
-                whileHover={{ x: 8 }} // Slightly more pronounced hover
-                transition={{ type: "spring", stiffness: 150, damping: 10 }} // Adjusted spring physics
+                key={selectedJob.job}
+                initial={{ opacity: 0, y: 50, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -50, scale: 0.98 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="bg-card border border-border p-8 rounded-2xl shadow-lg w-full"
               >
-                <h3 className="text-2xl font-semibold mb-1 text-foreground">
-                  {exp.job}
-                </h3>{" "}
-                {/* Larger job title */}
-                {exp.company && (
-                  <p className="text-primary/80 text-lg mb-2">{exp.company}</p> // Highlight company name
-                )}
-                <p className="text-sm text-muted-foreground mb-4">{exp.date}</p>
-                <ul className="list-disc pl-5 space-y-2 text-foreground/90 text-base leading-relaxed">
-                  {" "}
-                  {/* Increased line height and text size */}
-                  {exp.responsibilities.map((task, i) => (
-                    <li key={i}>{task}</li>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-primary">
+                      {selectedJob.job}
+                    </h3>
+                    <p className="text-md font-semibold text-foreground">
+                      {selectedJob.company}
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground font-medium">
+                    {selectedJob.date}
+                  </p>
+                </div>
+
+                <motion.ul
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="list-none pl-0 mt-6 space-y-4"
+                >
+                  {selectedJob.responsibilities.map((task, i) => (
+                    <motion.li
+                      key={i}
+                      variants={itemVariants}
+                      className="flex items-start gap-3"
+                    >
+                      <FaArrowRight className="text-primary/70 mt-1.5 flex-shrink-0" />
+                      <span>{task}</span>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </motion.div>
-            </motion.div>
-          ))}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

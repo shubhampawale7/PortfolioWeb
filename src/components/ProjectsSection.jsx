@@ -1,76 +1,52 @@
 /* eslint-disable no-unused-vars */
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
-import { ProjectModal } from "./ProjectModal";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const projects = [
   {
-    id: 5, // New unique ID for FlowBit
+    id: 5,
     title: "FlowBit - SaaS Subscription Manager",
     description:
-      "A full-stack MERN SaaS application to help users track and manage digital subscriptions. Features secure JWT authentication, full CRUD functionality, and an analytics dashboard with data visualization.",
-    image: "/projects/flowbit_cover.png", // Replace with your screenshot
-    extraImages: [
-      "/projects/flowbit_dashboard.png", // Replace with your screenshot
-      "/projects/flowbit_landing.png", // Replace with your screenshot
-      "/projects/flowbit_auth.png", // Replace with your screenshot
-    ],
+      "A full-stack MERN SaaS application to help users track and manage digital subscriptions. Features secure JWT authentication, full CRUD functionality, an analytics dashboard, and a modern, fully-responsive UI.",
+    image: "/projects/flowbit_cover.png",
     tags: [
       "React",
       "Node.js",
-      "Express",
       "MongoDB",
       "Tailwind CSS",
       "Framer Motion",
-      "JWT",
       "SaaS",
     ],
-    demoUrl: "https://flow-bit-fcnw.vercel.app/", // <-- REPLACE WITH YOUR LIVE VERCEL URL
-    githubUrl: "https://github.com/shubhampawale7/FlowBit", // <-- REPLACE WITH YOUR PROJECT'S GITHUB URL
+    demoUrl: "https://flow-bit-fcnw.vercel.app/",
+    githubUrl: "https://github.com/shubhampawale7/FlowBit",
   },
   {
     id: 1,
-    title: "Ninad's Pottery - E-Commerce Platform",
+    title: "Ninad's Pottery - E-Commerce",
     description:
       "Full-featured e-commerce platform with user authentication and payment processing.",
     image: "/projects/project1.png",
-    extraImages: [
-      "/projects/project1.png",
-      "/projects/project1b.png",
-      "/projects/project1c.png",
-    ],
     tags: ["React", "Node.js", "Express", "MongoDB"],
     demoUrl: "https://www.ninadspottery.com/",
     githubUrl: "https://github.com/shubhampawale7",
   },
   {
     id: 2,
-    title: "Prani Seva Ashram - A Dog NGO Website",
+    title: "Prani Seva Ashram - NGO Website",
     description:
-      "A dynamic website for a Dog NGO with adoption insights, donation tracking, and volunteer management features.",
+      "A dynamic website for a Dog NGO with adoption insights and donation tracking.",
     image: "/projects/project2.png",
-    extraImages: [
-      "/projects/project2.png",
-      "/projects/project2b.png",
-      "/projects/project2c.png",
-    ],
-    tags: ["Node.js", "Express.js", "React.js", "MongoDB"],
+    tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
     demoUrl: "https://www.pranisevaashram.com/",
     githubUrl: "https://github.com/shubhampawale7",
   },
   {
     id: 3,
-    title: "Trishha Mines and Minerals - A Mining Website",
+    title: "Trishha Mines & Minerals",
     description:
-      "A modern website for a mining company, highlighting their services, products, and global footprint.",
+      "A modern website for a mining company, highlighting their services and global footprint.",
     image: "/projects/project3.png",
-    extraImages: [
-      "/projects/project3.png",
-      "/projects/project3b.png",
-      "/projects/project3c.png",
-    ],
-    tags: ["Node.js", "Express.js", "React.js", "MongoDB"],
+    tags: ["React.js", "Node.js", "MongoDB"],
     demoUrl: "https://www.trishhaminesandminerals.com/",
     githubUrl: "https://github.com/shubhampawale7",
   },
@@ -80,120 +56,138 @@ const projects = [
     description:
       "A sleek and responsive landing page for the Walnut Hotel, built using pure HTML, CSS, and JavaScript.",
     image: "/projects/project4.png",
-    extraImages: [
-      "/projects/project4.png",
-      "/projects/project4b.png",
-      "/projects/project4c.png",
-    ],
     tags: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://walnut-hotel.vercel.app/",
     githubUrl: "https://github.com/shubhampawale7",
   },
 ];
 
+// Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, ease: "easeOut" },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 export const ProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = (project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProject(null);
-  };
-
   return (
-    <section id="projects" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold mb-4 text-center"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Featured <span className="text-primary">Projects</span>
-        </motion.h2>
-
-        <motion.p
-          className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
+    <section id="projects" className="py-24 px-4 relative bg-background">
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20"
         >
-          A glimpse into the products I’ve built with love for performance,
-          design, and scalability.
-        </motion.p>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Featured <span className="text-primary">Projects</span>
+          </h2>
+          <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
+            A selection of projects where I've turned complex problems into
+            elegant, functional digital experiences.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              onClick={() => openModal(project)}
-              key={project.id}
-              className="cursor-pointer group bg-card rounded-2xl overflow-hidden shadow-md transition-all hover:shadow-xl hover:-translate-y-1 duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
+        {/* This container will hold all the alternating project sections */}
+        <div className="space-y-28">
+          {projects.map((project, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              >
+                {/* Image Column */}
+                <motion.div
+                  className={`rounded-2xl overflow-hidden shadow-xl ${
+                    isEven ? "lg:order-1" : "lg:order-2"
+                  }`}
+                  whileHover={{ scale: 1.03, y: -5 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
 
-              <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={`${project.id}-${tag}`}
-                      className="px-2 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground border"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-4">
+                {/* Details Column */}
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  className={`flex flex-col justify-center ${
+                    isEven ? "lg:order-2" : "lg:order-1"
+                  }`}
+                >
+                  <motion.h3
+                    variants={itemVariants}
+                    className="text-3xl font-bold mb-4 text-foreground"
+                  >
+                    {project.title}
+                  </motion.h3>
+                  <motion.p
+                    variants={itemVariants}
+                    className="text-muted-foreground mb-6"
+                  >
+                    {project.description}
+                  </motion.p>
+                  <motion.div
+                    variants={itemVariants}
+                    className="flex flex-wrap gap-2 mb-6"
+                  >
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground border"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </motion.div>
+                  <motion.div
+                    variants={itemVariants}
+                    className="flex items-center gap-4"
+                  >
                     <a
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-foreground/80 hover:text-primary transition-colors"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold shadow-lg hover:bg-primary/90 transition-all text-sm"
                     >
-                      <ExternalLink size={20} />
+                      <ExternalLink size={14} /> Live Demo
                     </a>
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-foreground/80 hover:text-primary transition-colors"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <Github size={20} />
+                      <Github size={16} /> Source Code
                     </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div
-          className="text-center mt-12"
+          className="text-center mt-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
@@ -205,16 +199,10 @@ export const ProjectsSection = () => {
             href="https://github.com/shubhampawale7"
             rel="noopener noreferrer"
           >
-            Check My Github <ArrowRight size={16} />
+            See More on Github <ArrowRight size={16} />
           </a>
         </motion.div>
       </div>
-
-      <ProjectModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        project={selectedProject}
-      />
     </section>
   );
 };

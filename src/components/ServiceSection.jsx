@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaLaptopCode,
   FaShoppingCart,
@@ -8,218 +8,148 @@ import {
   FaLock,
   FaServer,
   FaRocket,
-  FaComments,
-  FaTools,
-  FaCloudUploadAlt,
-  FaBullhorn,
-  FaLightbulb,
-  FaCode, // A new general tech icon for background
-  FaStar, // Another general icon for background
 } from "react-icons/fa";
 
-// Array of service data - Reordered and original content length maintained
+// Data for the services section with image paths
 const services = [
   {
     icon: FaLaptopCode,
-    title: "Full-Stack Web Application Development",
+    title: "Full-Stack Applications",
     description:
-      "End-to-end development using MongoDB, Express.js, React, and Node.js. I build dynamic, scalable, and secure web applications tailored to your business needs.",
+      "End-to-end MERN stack development for scalable and secure web apps.",
+    image:
+      "https://images.unsplash.com/photo-1542744095-291d1f67b221?q=80&w=2070&auto=format&fit=crop",
   },
   {
     icon: FaShoppingCart,
-    title: "Comprehensive E-commerce Solutions",
+    title: "E-Commerce Solutions",
     description:
-      "Custom shopping carts, payment gateway integration (Stripe, Razorpay), product management, order tracking, and more. Creating seamless purchasing journeys.",
+      "Custom shopping carts, payment gateway integration, and complete online stores.",
+    image:
+      "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2134&auto=format&fit=crop",
   },
   {
     icon: FaPalette,
-    title: "Frontend UI/UX Development",
+    title: "UI/UX Development",
     description:
-      "Pixel-perfect responsive interfaces using React, Tailwind CSS, Framer Motion, and GSAP. I focus on clean design, fluid animations, and accessibility.",
+      "Pixel-perfect interfaces using React, Tailwind CSS, and Framer Motion.",
+    image:
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop",
   },
   {
     icon: FaLock,
-    title: "Authentication & Security Implementation",
+    title: "Authentication & Security",
     description:
-      "Secure user authentication systems with JWT, OAuth, session management, HttpOnly cookies, role-based access control, and rate-limiting.",
+      "Secure JWT-based authentication, role-based access, and modern security practices.",
+    image:
+      "https://media.istockphoto.com/id/1343499203/photo/lock-data-concept.jpg?s=2048x2048&w=is&k=20&c=qMI1jW4gQj5WN1GCMBEyXPzYw1Hgbmwef9IAdbxWWNY=",
   },
   {
     icon: FaServer,
-    title: "Backend API Development",
+    title: "API Development",
     description:
-      "RESTful and GraphQL API design and development with Express.js and Node.js. Modular, secure, and well-documented endpoints.",
+      "RESTful and GraphQL APIs with Node.js and Express for well-documented endpoints.",
+    image:
+      "https://media.istockphoto.com/id/1401675711/photo/application-programming-interface.jpg?s=2048x2048&w=is&k=20&c=saxSDELpUXUD_yuM3xxIz2W864LlxWO7x1f1kU5wXRc=",
   },
   {
     icon: FaRocket,
-    title: "Performance Optimization & SEO",
+    title: "Deployment & Performance",
     description:
-      "Improve website load time, implement lazy loading, code-splitting, and basic on-page SEO to enhance visibility and speed.",
-  },
-  {
-    icon: FaComments,
-    title: "Real-Time Features Integration",
-    description:
-      "WebSockets and Socket.io integration for live chat, notifications, real-time dashboards, and collaborative tools.",
-  },
-  {
-    icon: FaTools,
-    title: "Admin Panels & Dashboards",
-    description:
-      "Custom-built admin interfaces with analytics, data management, CRUD functionality, and secure login systems.",
-  },
-  {
-    icon: FaCloudUploadAlt,
-    title: "Deployment & DevOps Automation",
-    description:
-      "CI/CD setup, Dockerization, and deployment on platforms like Vercel, Netlify, Render, Railway, or traditional VPS with Nginx + PM2.",
+      "CI/CD setup and deployment on Vercel, Render, and others with a focus on speed.",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop",
   },
 ];
 
-// Helper component for the Parallax 3D Card (no changes needed here in core logic)
-const ParallaxTiltCard = ({ children }) => {
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 100, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 100, damping: 20 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17deg", "-17deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17deg", "17deg"]);
-  const scale = useTransform(mouseXSpring, [-0.5, 0.5], [1, 1.05]);
-
-  const handleMouseMove = (e) => {
-    if (!ref.current) return;
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
-
-    const centerX = left + width / 2;
-    const centerY = top + height / 2;
-
-    const offsetX = (e.clientX - centerX) / width;
-    const offsetY = (e.clientY - centerY) / height;
-
-    x.set(offsetX);
-    y.set(offsetY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+// Reusable Service Item component with the new blur-to-focus effect
+const ServiceItem = ({ service, isHovered, onHover }) => {
+  const { icon: Icon, title, description, image } = service;
 
   return (
     <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        perspective: "1000px",
-        rotateX,
-        rotateY,
-        scale,
-      }}
-      className="relative w-full h-full cursor-pointer"
+      onMouseEnter={onHover}
+      className="relative h-60 w-full rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {children}
+      {/* Blurry Background Layer - This fades out on hover */}
+      <motion.img
+        src={image}
+        alt={`${title} blurred background`}
+        className="absolute inset-0 w-full h-full object-cover filter blur-sm scale-110"
+        animate={{ opacity: isHovered ? 0 : 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      />
+
+      {/* Clear Background Layer - Always present underneath */}
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Gradient Overlay for text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+      {/* Text Content */}
+      <div className="relative h-full p-6 flex flex-col justify-end text-white">
+        {/* Description appears on hover */}
+        <motion.div
+          animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="mb-2"
+        >
+          <p className="text-sm">{description}</p>
+        </motion.div>
+        {/* Title and Icon are always visible */}
+        <div className="flex items-center gap-4">
+          <Icon className="text-2xl text-primary" />
+          <h3 className="text-2xl font-bold">{title}</h3>
+        </div>
+      </div>
     </motion.div>
   );
 };
 
 export const ServiceSection = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <section
       id="services"
-      className="py-24 px-4 relative overflow-hidden bg-background"
+      className="py-24 px-4 relative bg-background"
+      onMouseLeave={() => setHoveredIndex(null)} // Reset hover on leaving the section
     >
-      {/* Background aesthetic elements */}
-      <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 0.1, x: 0 }}
-        transition={{ duration: 1.5, delay: 0.2 }}
-        className="absolute top-1/4 -left-16 text-primary/10 text-[10rem] md:text-[15rem] -rotate-12 z-0 opacity-10 pointer-events-none"
-      >
-        <FaCode />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 0.08, y: 0 }}
-        transition={{ duration: 1.5, delay: 0.4 }}
-        className="absolute bottom-1/4 -right-16 text-primary/10 text-[8rem] md:text-[12rem] rotate-45 z-0 opacity-8 pointer-events-none"
-      >
-        <FaStar />
-      </motion.div>
-
       <div className="container mx-auto max-w-6xl relative z-10">
-        {" "}
-        {/* Ensure content is above background elements */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary">Services</span>
-        </h2>
-        {/* Appealing write-up before the cards */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-lg text-center text-muted-foreground mb-16 max-w-3xl mx-auto leading-relaxed"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
         >
-          I offer a comprehensive suite of development services designed to
-          transform your vision into robust, high-performing digital realities.
-          My focus is on crafting{" "}
-          <strong className="text-primary">tailored solutions</strong> that
-          prioritize{" "}
-          <strong className="text-primary">
-            scalability, security, and exceptional user experience{" "}
-          </strong>
-          from concept to deployment.
-        </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            My <span className="text-primary">Services</span>
+          </h2>
+          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
+            From concept to deployment, I offer a complete suite of services to
+            build modern, high-performing web applications.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <motion.div
+            <ServiceItem
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="relative rounded-xl overflow-hidden group"
-            >
-              <ParallaxTiltCard>
-                <div className="bg-card border border-border rounded-xl p-8 h-full flex flex-col justify-between items-center text-center shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:border-primary/50 relative z-10 hover:bg-card-hover">
-                  <div className="text-primary mb-6 transition-all duration-300 group-hover:text-primary-dark group-hover:drop-shadow-lg">
-                    {" "}
-                    {/* Icon container */}
-                    <service.icon className="text-5xl group-hover:scale-110 transition-transform duration-300" />{" "}
-                    {/* Icon scaling */}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
-                    {service.description}{" "}
-                    {/* No dangerouslySetInnerHTML or bolding */}
-                  </p>
-                </div>
-              </ParallaxTiltCard>
-            </motion.div>
+              service={service}
+              isHovered={hoveredIndex === index}
+              onHover={() => setHoveredIndex(index)}
+            />
           ))}
         </div>
-        {/* Appealing write-up after the cards */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, delay: services.length * 0.08 + 0.3 }}
-          className="text-lg text-center text-muted-foreground mt-16 max-w-3xl mx-auto leading-relaxed"
-        >
-          My commitment extends beyond just writing code; it's about delivering{" "}
-          {""}
-          <strong className="text-primary">
-            impactful digital products{" "}
-          </strong>{" "}
-          that drive growth and efficiency. I believe in clear communication,
-          agile methodologies, and a relentless pursuit of excellence. Let's
-          collaborate to build something truly remarkable together.
-        </motion.p>
       </div>
     </section>
   );

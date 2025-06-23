@@ -1,138 +1,177 @@
 /* eslint-disable no-unused-vars */
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+// Import React Icons instead of Lucide icons
 import {
-  Search,
-  Brain,
-  Code,
-  Rocket,
-  Award,
-  Handshake,
-  MessageCircle,
-  Settings,
-  Globe,
-} from "lucide-react"; // Expanded icon choices
+  HiMagnifyingGlass,
+  HiOutlineLightBulb,
+  HiCodeBracket,
+  HiCog6Tooth,
+  HiRocketLaunch,
+  HiHandRaised,
+} from "react-icons/hi2"; // Using Heroicons v2 (hi2)
 
+// Updated processSteps array with working Unsplash images
 const processSteps = [
   {
-    icon: Search,
-    title: "1. Discovery & Strategy",
+    icon: HiMagnifyingGlass, // Replaced Search with HiMagnifyingGlass
+    title: "Discovery & Strategy",
     description:
-      "Deep dive into your vision, business goals, and target audience. We define project scope, requirements, and lay down the strategic roadmap together.",
-    color: "bg-blue-600/10 text-blue-600", // Example color hint (use your primary/accent)
+      "We start with a deep dive into your vision, goals, and target audience to define the project scope and create a strategic roadmap for success.",
+    image:
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2232&auto=format&fit=crop",
   },
   {
-    icon: Brain,
-    title: "2. Planning & Design",
+    icon: HiOutlineLightBulb, // Replaced Brain with HiOutlineLightBulb
+    title: "Planning & Design (UX/UI)",
     description:
-      "Crafting detailed technical architecture, wireframes, and UI/UX mockups. This phase ensures a clear, shared blueprint before any code is written.",
-    color: "bg-green-600/10 text-green-600", // Example color hint
+      "Next, we craft the blueprint. This includes detailed technical architecture, wireframes, and high-fidelity UI/UX mockups to ensure a clear and shared vision.",
+    image:
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    icon: Code,
-    title: "3. Development & Iteration",
+    icon: HiCodeBracket, // Replaced Code with HiCodeBracket
+    title: "Development & Iteration",
     description:
-      "Bringing designs to life with clean, scalable code. I work iteratively, providing regular updates and incorporating feedback for precise alignment.",
-    color: "bg-purple-600/10 text-purple-600", // Example color hint
+      "Designs are brought to life with clean, scalable MERN stack code. I work iteratively, providing regular updates and incorporating feedback for precise alignment.",
+    image:
+      "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    icon: Settings, // Changed for maintenance
-    title: "4. Testing & Optimization",
+    icon: HiCog6Tooth, // Replaced Settings with HiCog6Tooth
+    title: "Testing & Optimization",
     description:
-      "Rigorous testing across devices and environments to ensure flawless functionality and performance. Optimization for speed and responsiveness is key.",
-    color: "bg-orange-600/10 text-orange-600", // Example color hint
+      "Rigorous testing across devices ensures flawless functionality. Performance is a priority, so I optimize for speed, responsiveness, and Core Web Vitals.",
+    image:
+      "https://images.unsplash.com/photo-1580894906475-403276d3942d?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    icon: Rocket,
-    title: "5. Deployment & Launch",
+    icon: HiRocketLaunch, // Replaced Rocket with HiRocketLaunch
+    title: "Deployment & Launch",
     description:
-      "Smooth deployment to a robust hosting environment. Your application goes live, meticulously configured for stability and accessibility to your users.",
-    color: "bg-red-600/10 text-red-600", // Example color hint
+      "Your application is deployed to a robust hosting environment like Vercel and Render, meticulously configured for stability, scalability, and accessibility.",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    icon: Handshake, // Changed for post-launch support
-    title: "6. Support & Evolution",
+    icon: HiHandRaised, // Replaced Handshake with HiHandRaised
+    title: "Support & Evolution",
     description:
-      "Ongoing support, maintenance, and future enhancement planning. I ensure your application continues to perform optimally and evolves with your needs.",
-    color: "bg-indigo-600/10 text-indigo-600", // Example color hint
+      "I provide ongoing support, maintenance, and future enhancement planning to ensure your application continues to perform optimally and evolve with your needs.",
+    image:
+      "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop",
   },
 ];
 
 export const HowIWork = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15, // Stagger animation for each step
-      },
-    },
-  };
-
-  const stepCardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
+  const [activeStep, setActiveStep] = useState(processSteps[0]);
 
   return (
     <section
       id="how-i-work"
       className="py-24 px-4 bg-background relative overflow-hidden"
     >
-      <div className="absolute inset-0 z-0 radial-gradient-background opacity-10 pointer-events-none"></div>
-
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-          {" "}
-          {/* Adjusted margin-bottom */}
-          My <span className="text-primary">Development Process</span>
-        </h2>
-        <p className="text-lg text-center text-muted-foreground mb-16 max-w-3xl mx-auto leading-relaxed">
-          From initial concept to seamless deployment and beyond, my structured
-          approach ensures every project is built with{" "}
-          <span className="text-primary">
-            {" "}
-            precision, collaboration, and a focus on lasting impact{" "}
-          </span>
-          . Here's how we turn ideas into powerful digital solutions.
-        </p>
-
+      <div className="container mx-auto max-w-6xl">
         <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" // Responsive grid for cards
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
         >
-          {processSteps.map((step, index) => (
-            <motion.div
-              key={index}
-              variants={stepCardVariants}
-              className="bg-card border border-border rounded-lg shadow-xl p-6 text-center flex flex-col items-center group
-                         transition-all duration-300 hover:shadow-2xl hover:border-primary/50 hover:-translate-y-2"
-            >
-              <div
-                className={`p-4 rounded-full mb-4 ${step.color} transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}
-              >
-                <step.icon className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                {step.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {step.description}
-              </p>
-            </motion.div>
-          ))}
+          <h2 className="text-3xl md:text-4xl font-bold">
+            My Development <span className="text-primary">Process</span>
+          </h2>
+          <p className="text-lg text-center text-muted-foreground mt-4 max-w-3xl mx-auto">
+            A structured journey from concept to launch, ensuring precision,
+            collaboration, and impactful results.
+          </p>
         </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Left Column: Navigation List */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-1"
+          >
+            <div className="relative flex flex-col gap-2">
+              {processSteps.map((step) => (
+                <div
+                  key={step.title}
+                  onMouseEnter={() => setActiveStep(step)}
+                  className={`relative p-4 rounded-lg cursor-pointer transition-colors duration-300 ${
+                    activeStep.title === step.title ? "" : "hover:bg-muted/50"
+                  }`}
+                >
+                  {activeStep.title === step.title && (
+                    <motion.div
+                      layoutId="activeProcessHighlight"
+                      className="absolute inset-0 bg-muted rounded-lg border border-primary/30"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 25,
+                      }}
+                    />
+                  )}
+                  <div className="relative z-10 flex items-center gap-4">
+                    <div
+                      className={`p-2 rounded-full transition-colors duration-300 ${
+                        activeStep.title === step.title
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-primary"
+                      }`}
+                    >
+                      {/* React Icons are rendered directly as components */}
+                      <step.icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">
+                      {step.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right Column: Spotlight Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-2"
+          >
+            <div className="sticky top-24">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                >
+                  <div className="w-full h-64 rounded-2xl overflow-hidden shadow-xl border border-border mb-6">
+                    <img
+                      src={activeStep.image}
+                      alt={activeStep.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
+                    {activeStep.title}
+                  </h3>
+                  <p className="text-muted-foreground text-lg leading-relaxed">
+                    {activeStep.description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
