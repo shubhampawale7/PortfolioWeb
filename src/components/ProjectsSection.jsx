@@ -6,6 +6,30 @@ import { useState } from "react";
 
 const projects = [
   {
+    id: 5, // New unique ID for FlowBit
+    title: "FlowBit - SaaS Subscription Manager",
+    description:
+      "A full-stack MERN SaaS application to help users track and manage digital subscriptions. Features secure JWT authentication, full CRUD functionality, and an analytics dashboard with data visualization.",
+    image: "/projects/flowbit_cover.png", // Replace with your screenshot
+    extraImages: [
+      "/projects/flowbit_dashboard.png", // Replace with your screenshot
+      "/projects/flowbit_landing.png", // Replace with your screenshot
+      "/projects/flowbit_auth.png", // Replace with your screenshot
+    ],
+    tags: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "Framer Motion",
+      "JWT",
+      "SaaS",
+    ],
+    demoUrl: "https://flow-bit-fcnw.vercel.app/", // <-- REPLACE WITH YOUR LIVE VERCEL URL
+    githubUrl: "https://github.com/shubhampawale7/FlowBit", // <-- REPLACE WITH YOUR PROJECT'S GITHUB URL
+  },
+  {
     id: 1,
     title: "Ninad's Pottery - E-Commerce Platform",
     description:
@@ -113,7 +137,7 @@ export const ProjectsSection = () => {
               className="cursor-pointer group bg-card rounded-2xl overflow-hidden shadow-md transition-all hover:shadow-xl hover:-translate-y-1 duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
               <div className="h-48 overflow-hidden">
@@ -147,7 +171,7 @@ export const ProjectsSection = () => {
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()} // prevent modal open on clicking links
+                      onClick={(e) => e.stopPropagation()}
                       className="text-foreground/80 hover:text-primary transition-colors"
                     >
                       <ExternalLink size={20} />
