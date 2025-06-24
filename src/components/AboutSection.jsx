@@ -11,11 +11,14 @@ import {
   Zap,
   HardDrive,
   Layout,
-} from "lucide-react"; // Added more relevant icons for skills/focus areas
+  Layers,
+  Users,
+  Clock,
+} from "lucide-react";
 
 export const AboutSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 }); // Trigger animation when 20% in view
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   // Animation variants for staggered reveal
   const sectionVariants = {
@@ -26,7 +29,7 @@ export const AboutSection = () => {
       transition: {
         duration: 0.8,
         ease: "easeOut",
-        staggerChildren: 0.2, // Apply staggered effect to direct children
+        staggerChildren: 0.15,
       },
     },
   };
@@ -57,56 +60,56 @@ export const AboutSection = () => {
       {/* Background radial gradient */}
       <div className="absolute inset-0 z-0 radial-gradient-background opacity-20 pointer-events-none"></div>
 
-      <div className="container mx-auto max-w-4xl relative z-10">
-        {" "}
-        {/* Slightly narrower max-width for text focus */}
+      <div className="container mx-auto max-w-5xl relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
-          About <span className="text-primary">Me</span>
+          What Drives <span className="text-primary">Me</span>
         </h2>
         <motion.div
           ref={ref}
           variants={sectionVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-16" // Increased space between blocks
+          className="space-y-16"
         >
-          {/* Block 1: Introduction */}
+          {/* Block 1: Vision & Philosophy */}
           <motion.div
             variants={textBlockVariants}
             className="bg-card p-8 rounded-lg shadow-xl border border-border text-center"
           >
             <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-foreground">
-              Passionate Web Developer, Driven by Innovation.
+              Building Digital Solutions That Truly Matter.
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              With over{" "}
-              <span className="text-primary font-semibold">
-                1.5 years of hands-on experience
-              </span>{" "}
-              in web development, I thrive on crafting{" "}
+              My journey as a{" "}
+              <strong className="text-primary">Full-Stack Developer</strong> is
+              defined by a relentless drive to transform complex challenges into{" "}
               <strong className="text-primary">
-                {" "}
-                responsive, accessible, and performant
-              </strong>{" "}
-              applications using cutting-edge technologies. My journey in
-              development is fueled by a relentless curiosity and a passion for
-              turning complex challenges into elegant, user-friendly solutions.
+                elegant, high-performance, and user-centric web applications
+              </strong>
+              . I'm passionate about crafting robust systems from the ground up,
+              ensuring a seamless experience for both users and maintainers. My
+              focus is always on delivering{" "}
+              <strong className="text-primary">
+                tangible impact through code
+              </strong>
+              .
             </p>
           </motion.div>
 
-          {/* Block 2: What I Do (Key Focus Areas) */}
+          {/* Block 2: Key Strengths & Approach */}
           <motion.div variants={textBlockVariants} className="text-center">
             <h3 className="text-2xl md:text-3xl font-semibold mb-10 text-foreground">
-              My Core Focus & Strengths
+              My Expertise & How I Deliver{" "}
+              <span className="text-primary">Value</span>
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Card 1: Web Development */}
+              {/* Card 1: End-to-End Development */}
               <motion.div variants={cardVariants} className="about-card group">
                 <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
                   <Code className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
                 </div>
                 <h4 className="font-semibold text-xl text-foreground mt-4">
-                  Full-Stack Development
+                  End-to-End Solutions
                 </h4>
                 <p className="text-muted-foreground text-sm mt-2">
                   Building robust web applications from frontend to backend with
@@ -114,99 +117,96 @@ export const AboutSection = () => {
                 </p>
               </motion.div>
 
-              {/* Card 2: Problem Solving */}
+              {/* Card 2: Performance & Scalability */}
+              <motion.div variants={cardVariants} className="about-card group">
+                <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
+                  <Rocket className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
+                </div>
+                <h4 className="font-semibold text-xl text-foreground mt-4">
+                  Performance & Scalability
+                </h4>
+                <p className="text-muted-foreground text-sm mt-2">
+                  Optimizing applications for speed and designing architectures
+                  that grow with your needs.
+                </p>
+              </motion.div>
+
+              {/* Card 3: User-Centric Design */}
+              <motion.div variants={cardVariants} className="about-card group">
+                <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
+                  <User className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
+                </div>
+                <h4 className="font-semibold text-xl text-foreground mt-4">
+                  User-Centric Design
+                </h4>
+                <p className="text-muted-foreground text-sm mt-2">
+                  Translating user needs into intuitive interfaces and seamless
+                  experiences.
+                </p>
+              </motion.div>
+
+              {/* Card 4: Problem Solving & Innovation */}
               <motion.div variants={cardVariants} className="about-card group">
                 <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
                   <Lightbulb className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
                 </div>
                 <h4 className="font-semibold text-xl text-foreground mt-4">
-                  Innovative Solutions
+                  Problem Solving & Innovation
                 </h4>
                 <p className="text-muted-foreground text-sm mt-2">
-                  Applying creative thinking to tackle complex challenges and
-                  deliver effective results.
+                  Tackling complex challenges with creative solutions and a
+                  proactive mindset.
                 </p>
               </motion.div>
 
-              {/* Card 3: Performance & Optimization */}
+              {/* Card 5: Agile & Efficient Development */}
               <motion.div variants={cardVariants} className="about-card group">
                 <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
-                  <Zap className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
+                  <Clock className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
                 </div>
                 <h4 className="font-semibold text-xl text-foreground mt-4">
-                  Performance Optimization
+                  Agile & Efficient Development
                 </h4>
                 <p className="text-muted-foreground text-sm mt-2">
-                  Ensuring blazing-fast load times and smooth user experiences
-                  for every project.
+                  Delivering high-quality code iteratively and efficiently to
+                  meet project goals.
                 </p>
               </motion.div>
 
-              {/* Card 4: Data Management (New focus) */}
+              {/* Card 6: Collaborative & Communicative */}
               <motion.div variants={cardVariants} className="about-card group">
                 <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
-                  <HardDrive className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
+                  <Users className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
                 </div>
                 <h4 className="font-semibold text-xl text-foreground mt-4">
-                  Data Management
+                  Collaborative & Communicative
                 </h4>
                 <p className="text-muted-foreground text-sm mt-2">
-                  Designing and optimizing databases for efficient data storage
-                  and retrieval.
-                </p>
-              </motion.div>
-
-              {/* Card 5: UI/UX (New focus) */}
-              <motion.div variants={cardVariants} className="about-card group">
-                <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
-                  <Layout className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
-                </div>
-                <h4 className="font-semibold text-xl text-foreground mt-4">
-                  Intuitive UI/UX
-                </h4>
-                <p className="text-muted-foreground text-sm mt-2">
-                  Crafting user interfaces that are not just beautiful, but also
-                  highly intuitive and accessible.
-                </p>
-              </motion.div>
-
-              {/* Card 6: Continuous Learning */}
-              <motion.div variants={cardVariants} className="about-card group">
-                <div className="p-3 rounded-full bg-primary/10 text-primary group-hover:bg-primary transition-colors duration-300">
-                  <TrendingUp className="h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:text-background" />
-                </div>
-                <h4 className="font-semibold text-xl text-foreground mt-4">
-                  Continuous Learning
-                </h4>
-                <p className="text-muted-foreground text-sm mt-2">
-                  Always exploring new technologies to bring cutting-edge
-                  solutions to my projects.
+                  Working effectively within teams, ensuring clear communication
+                  throughout the development cycle.
                 </p>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Block 3: Values & CTA */}
+          {/* Block 3: Call to Action */}
           <motion.div
             variants={textBlockVariants}
             className="bg-card p-8 rounded-lg shadow-xl border border-border text-center"
           >
             <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-foreground">
-              My Approach: Collaborate. Innovate. Deliver.
+              Ready to Build Something{" "}
+              <span className="text-primary">Great</span>?
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              My philosophy centers on clear communication, agile methodologies,
-              and a relentless pursuit of excellence. I believe in fostering
-              strong partnerships to truly understand your needs and deliver{" "}
-              {""}
-              <strong className="text-primary">
-                impactful digital products
-              </strong>{" "}
-              that drive growth and efficiency.
+              I'm always eager to take on new challenges and contribute to
+              impactful projects. Whether you have an innovative idea or need a
+              reliable developer to bring your vision to life, let's connect and
+              discuss how my expertise can drive your success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#contact" className="cosmic-button">
-                Get In Touch
+                Let's Connect
               </a>
               <a
                 href="/Resume.pdf" // IMPORTANT: Change this path to your actual resume file!
@@ -214,7 +214,7 @@ export const AboutSection = () => {
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-background transition-colors duration-300 shadow-md"
               >
-                Download CV
+                Download My CV
               </a>
             </div>
           </motion.div>

@@ -124,7 +124,7 @@ export const ContactSection = () => {
                 </a>
 
                 <a
-                  href="https://www.instagram.com/__shubh999__/#"
+                  href="https://www.instagram.com/weblynxinfotech/?utm_source=ig_web_button_share_sheet"
                   target="_blank"
                 >
                   <Instagram />
