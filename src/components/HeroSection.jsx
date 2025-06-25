@@ -138,7 +138,7 @@ export const HeroSection = () => {
           >
             A dedicated{" "}
             <strong className="text-primary font-semibold">
-              Full-Stack Developer
+              Full-Stack Developer{" "}
             </strong>
             with a passion for building robust, user-centric web applications. I
             transform complex ideas into intuitive and scalable solutions.
