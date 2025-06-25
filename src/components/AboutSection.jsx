@@ -190,7 +190,7 @@ export const AboutSection = () => {
           </motion.div>
 
           {/* Block 3: Call to Action */}
-          <motion.div
+          {/* <motion.div
             variants={textBlockVariants}
             className="bg-card p-8 rounded-lg shadow-xl border border-border text-center"
           >
@@ -217,7 +217,7 @@ export const AboutSection = () => {
                 Download My CV
               </a>
             </div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </section>
