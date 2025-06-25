@@ -26,11 +26,11 @@ const navItems = [
     icon: <Code size={18} className="mr-2" />,
   },
 
-  {
-    name: "Experience",
-    href: "#experience",
-    icon: <Briefcase size={18} className="mr-2" />,
-  },
+  // {
+  //   name: "Experience",
+  //   href: "#experience",
+  //   icon: <Briefcase size={18} className="mr-2" />,
+  // },
   {
     name: "Projects",
     href: "#projects",

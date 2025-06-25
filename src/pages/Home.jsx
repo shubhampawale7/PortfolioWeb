@@ -12,7 +12,7 @@ import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
-import { ExperienceSection } from "../components/ExperienceSection";
+// import { ExperienceSection } from "../components/ExperienceSection";
 import { TestimonialCarousel } from "../components/TestimonialCarousel";
 import { FAQAccordion } from "../components/FAQAccordion";
 
@@ -42,7 +42,7 @@ export const Home = () => {
         <ServiceSection />
         <UIUXShowcase />
         <SkillsSection />
-        <ExperienceSection />
+        {/* <ExperienceSection /> */}
         <ProjectsSection />
         <HowIWork />
         {/* <DigitalGardenSection /> */}
