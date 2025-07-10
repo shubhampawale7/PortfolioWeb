@@ -4,31 +4,14 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    id: 5,
-    title: "FlowBit - SaaS Subscription Manager",
-    description:
-      "A full-stack MERN SaaS application to help users track and manage digital subscriptions. Features secure JWT authentication, full CRUD functionality, an analytics dashboard, and a modern, fully-responsive UI.",
-    image: "/projects/flowbit_cover.png",
-    tags: [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "Tailwind CSS",
-      "Framer Motion",
-      "SaaS",
-    ],
-    demoUrl: "https://flow-bit-fcnw.vercel.app/",
-    githubUrl: "https://github.com/shubhampawale7/FlowBit",
-  },
-  {
     id: 1,
     title: "Ninad's Pottery - E-Commerce",
     description:
       "Full-featured e-commerce platform with user authentication and payment processing.",
     image: "/projects/project1.png",
     tags: ["React", "Node.js", "Express", "MongoDB"],
-    demoUrl: "https://www.ninadspottery.com/",
-    githubUrl: "https://github.com/shubhampawale7",
+    demoUrl: "https://ninad-s-pottery.vercel.app/",
+    githubUrl: "https://github.com/shubhampawale7/Ninad-s-Pottery",
   },
   {
     id: 2,
@@ -37,8 +20,18 @@ const projects = [
       "A dynamic website for a Dog NGO with adoption insights and donation tracking.",
     image: "/projects/project2.png",
     tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
-    demoUrl: "https://www.pranisevaashram.com/",
-    githubUrl: "https://github.com/shubhampawale7",
+    demoUrl: "https://prani-seva-ashram-2-0.onrender.com/",
+    githubUrl: "https://github.com/shubhampawale7/Prani-Seva-Ashram-2.0",
+  },
+  {
+    id: 6,
+    title: "BRB Art Fusion - Fullstack E-Commerce Platform",
+    description:
+      "A complete e-commerce solution , featuring a powerful admin panel for end-to-end control, from product listing to final delivery.",
+    image: "/projects/project6.png",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Fullstack"],
+    demoUrl: "https://brb-art-fusion-mern.vercel.app/",
+    githubUrl: "https://github.com/shubhampawale7/brb-art-fusion-MERN",
   },
   {
     id: 3,
@@ -59,6 +52,23 @@ const projects = [
     tags: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://walnut-hotel.vercel.app/",
     githubUrl: "https://github.com/shubhampawale7",
+  },
+  {
+    id: 5,
+    title: "FlowBit - SaaS Subscription Manager",
+    description:
+      "A full-stack MERN SaaS application to help users track and manage digital subscriptions. Features secure JWT authentication, full CRUD functionality, an analytics dashboard, and a modern, fully-responsive UI.",
+    image: "/projects/flowbit_cover.png",
+    tags: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "Framer Motion",
+      "SaaS",
+    ],
+    demoUrl: "https://flow-bit-fcnw.vercel.app/",
+    githubUrl: "https://github.com/shubhampawale7/FlowBit",
   },
 ];
 
